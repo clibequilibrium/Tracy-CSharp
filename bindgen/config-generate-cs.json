@@ -1,0 +1,18 @@
+{
+  "inputFilePath": "./x-ast/ast-cross-platform.json",
+  "outputFilePath": "./PInvoke.gen.cs",
+  "namespaceName": "Tracy",
+  "className": "PInvoke",
+  "libraryName": "TracyClient",
+  "mappedNames": [
+],
+  "ignoredNames": [
+],
+  "isEnabledVerifyCSharpCodeCompiles": false,
+  "mappedCNamespaces": [
+  ],
+  "isEnabledAssemblyAttributes": true,
+  "isEnabledLibraryImport": true,
+  "isEnabledIdiomaticCSharp": true,
+  "isEnabledEnumValueNamesUpperCase": false
+}

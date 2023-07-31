@@ -1,0 +1,90 @@
+name: "Build .NET solution"
+
+on:
+  workflow_call:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+
+jobs:
+
+  native-job:
+    name: "Build native libraries: ${{ matrix.platform.rid }}"
+    runs-on: ${{ matrix.platform.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - { name: Windows (x64), os: windows-latest, rid: win-x64 }
+          - { name: macOS (x64 + arm64), os: macos-latest, rid: osx }
+          - { name: Linux (x64), os: ubuntu-latest, rid: linux-x64 }
+    steps:
+
+      - name: "Clone Git repository"
+        uses: actions/checkout@master
+        with:
+          submodules: "recursive"
+
+      - name: "Cache native libraries"
+        id: cache-libs
+        uses: actions/cache@v3
+        with:
+          path: "./lib"
+          key: "libs-${{ matrix.platform.rid }}-${{ hashFiles('ext/Tracy/**/*') }}-${{ hashFiles('src/c/**/*') }}"
+
+      - name: "Install C2CS"
+        shell: bash
+        run: dotnet tool install --global bottlenoselabs.C2CS.Tool
+
+      - name: "Build native libraries"
+        if: steps.cache-libs.outputs.cache-hit != 'true'
+        shell: bash
+        run: ./library.sh "auto"
+
+      - name: "Upload native libraries"
+        uses: actions/upload-artifact@v2
+        with:
+          path: "./lib"
+          name: "native-libraries-${{ matrix.platform.rid }}"
+
+  dotnet-job:
+    name: "Build .NET solution"
+    needs: [native-job]
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: "Clone Git repository"
+        uses: actions/checkout@master
+
+      - name: "Download native libraries (win-x64)"
+        uses: actions/download-artifact@v1
+        with:
+          name: "native-libraries-win-x64"
+          path: "./lib"
+
+      - name: "Download native libraries (osx)"
+        uses: actions/download-artifact@v1
+        with:
+          name: "native-libraries-osx"
+          path: "./lib"
+
+      - name: "Download native libraries (linux-x64)"
+        uses: actions/download-artifact@v1
+        with:
+          name: "native-libraries-linux-x64"
+          path: "./lib"
+
+      - name: "Download generated C# code"
+        uses: actions/download-artifact@v1
+        continue-on-error: true
+        with:
+          name: "bindgen-cs"
+          path: "./src/cs/production/Tracy"
+
+      - name: ".NET Build"
+        run: dotnet build "./src/cs"
+          

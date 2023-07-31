@@ -1,0 +1,10 @@
+{
+  "inputFilePath": "../src/c/production/Tracy/_Tracy.h",
+  "userIncludeDirectories": [
+    "../ext/Tracy"
+  ],
+  "platforms": {
+    "x86_64-unknown-linux-gnu": {},
+    "aarch64-unknown-linux-gnu": {}
+  }
+}

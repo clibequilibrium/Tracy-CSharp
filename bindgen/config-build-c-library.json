@@ -1,0 +1,6 @@
+{
+  "cMakeDirectoryPath": "../ext/Tracy/",
+  "outputDirectoryPath": "../lib",
+  "deleteBuildFiles": true,
+  "cMakeArguments": []
+}
