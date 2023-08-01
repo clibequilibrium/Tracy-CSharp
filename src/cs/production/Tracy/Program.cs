@@ -9,6 +9,8 @@ internal sealed class Program
         while (true)
         {
             TracyEmitFrameMark((CString)("FrameUpdate"));
+
+            Thread.Sleep(16);
         }
 
         Console.WriteLine("Cleaned up and quit \n");
