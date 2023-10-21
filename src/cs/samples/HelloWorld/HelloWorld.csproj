@@ -10,4 +10,12 @@
     <ProjectReference Include="..\..\production\Tracy\Tracy.csproj" />
   </ItemGroup>
 
+  <!-- Dynamic link libraries -->
+  <ItemGroup>
+    <Content Include="..\..\..\..\lib\TracyClient.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>TracyClient.dll</TargetPath>
+    </Content>
+  </ItemGroup>
+
 </Project>

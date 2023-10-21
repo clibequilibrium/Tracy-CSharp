@@ -8,4 +8,21 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+   <!-- NuGet settings -->
+    <PropertyGroup>
+        <IsPackable>true</IsPackable>
+        <PackageId>clibequilibrium.Tracy</PackageId>
+        <PackageDescription>C# interop bindings for https://github.com/wolfpld/tracy.</PackageDescription>
+        <RepositoryUrl>https://github.com/clibequilibrium/Tracy-CSharp</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>_README_PACKAGE.md</PackageReadmeFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Update="_README_PACKAGE.md">
+            <Pack>true</Pack>
+            <PackagePath>/</PackagePath>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 </Project>
