@@ -22,11 +22,11 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: "bindgen-cs"
-          path: "./src/cs/production/Tracy"
+          path: "./src/cs/production/Tracy/Generated"
 
       - name: "Add + commit + push (if necessary)"
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: 'lithiumtoast'
-          author_email: 'lithiumtoast@users.noreply.github.com'
+          author_name: 'clibequilibrium'
+          author_email: 'clibequilibrium@users.noreply.github.com'
           message: "Update C# bindings"

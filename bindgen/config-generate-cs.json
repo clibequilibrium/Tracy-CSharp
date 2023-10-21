@@ -1,6 +1,6 @@
 {
   "inputFilePath": "./x-ast/ast-cross-platform.json",
-  "outputFilePath": "./PInvoke.gen.cs",
+  "outputFileDirectory": "./../src/cs/production/Tracy/Generated",
   "namespaceName": "Tracy",
   "className": "PInvoke",
   "libraryName": "TracyClient",
