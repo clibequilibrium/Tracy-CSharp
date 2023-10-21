@@ -3,8 +3,8 @@
 .vscode/
 
 # C# build artifacts
-[Bb]in/
-[Oo]bj/
+/bin/
+/obj/
 
 # C# packages
 /nupkg/
