@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- MSBuild settings -->
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace />
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!-- NuGet package references -->
+  <ItemGroup>
+    <PackageReference Include="bottlenoselabs.C2CS.Runtime" Version="6.0.3" />
+  </ItemGroup>
+
+</Project>

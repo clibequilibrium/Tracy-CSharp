@@ -1,0 +1,10 @@
+<Project>
+
+	<Import Project="../Directory.Build.targets"/>
+
+	<!-- MSBuild.Tools project settings -->
+	<PropertyGroup>
+		<EnableCodeCoverage>false</EnableCodeCoverage>
+	</PropertyGroup>
+
+</Project>

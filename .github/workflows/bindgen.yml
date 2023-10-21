@@ -112,4 +112,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: "bindgen-cs"
-          path: "./PInvoke.gen.cs"
+          path: "./src/cs/production/Tracy/PInvoke.gen.cs"

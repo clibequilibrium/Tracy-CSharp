@@ -1,4 +1,0 @@
-F:/Documents/CSharp/Tracy-CSharp/ext/Tracy/cmake-build-release/CMakeFiles/TracyClient.dir
-F:/Documents/CSharp/Tracy-CSharp/ext/Tracy/cmake-build-release/CMakeFiles/INSTALL.dir
-F:/Documents/CSharp/Tracy-CSharp/ext/Tracy/cmake-build-release/CMakeFiles/ALL_BUILD.dir
-F:/Documents/CSharp/Tracy-CSharp/ext/Tracy/cmake-build-release/CMakeFiles/ZERO_CHECK.dir
