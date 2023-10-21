@@ -6,12 +6,21 @@ C# bindings for https://github.com/wolfpld/tracy with native dynamic link librar
 
 ## How to use
 
+## Installing `C2CS`
+
+`C2CS` is distributed as a NuGet tool. To get started, the .NET 7 software development kit (SDK) is required.
+
+### Latest release of `C2CS`
+
+```bash
+dotnet tool install bottlenoselabs.c2cs.tool --global 
+```
 ### From source
 
 1. Download and install [.NET 7](https://dotnet.microsoft.com/download).
 2. Fork the repository using GitHub or clone the repository manually with submodules: `git clone --recurse-submodules https://github.com/clibequilibrium/Tracy-CSharp`.
 3. Build the native library by running `library.sh`. To execute `.sh` scripts on Windows, use Git Bash which can be installed with Git itself: https://git-scm.com/download/win. The `library.sh` script requires that CMake is installed and in your path.
-4. Locate the sample of the C# project: `./src/cs/production/Tracy/TracySample.csproj`.
+4. Locate the sample of the C# project: `./src/cs/production/samples/HelloWorld.csproj`.
 
 ## Developers: Documentation
 
