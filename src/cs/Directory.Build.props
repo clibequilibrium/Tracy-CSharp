@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+      <UseArtifactsOutput>true</UseArtifactsOutput>
+      <ArtifactsPath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), .gitignore))/artifacts</ArtifactsPath>
+    </PropertyGroup>
+    
+ </Project>
+  
