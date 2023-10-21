@@ -1,9 +1,10 @@
 # JetBrains
 .idea/
+.vscode/
 
 # C# build artifacts
-/bin/
-/obj/
+[Bb]in/
+[Oo]bj/
 
 # C# packages
 /nupkg/

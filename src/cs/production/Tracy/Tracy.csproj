@@ -8,9 +8,4 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <!-- NuGet package references -->
-  <ItemGroup>
-    <PackageReference Include="bottlenoselabs.C2CS.Runtime" Version="6.0.3" />
-  </ItemGroup>
-
 </Project>
