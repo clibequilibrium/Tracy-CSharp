@@ -11,7 +11,7 @@
    <!-- NuGet settings -->
     <PropertyGroup>
         <IsPackable>true</IsPackable>
-        <PackageId>clibequilibrium.Tracy</PackageId>
+        <PackageId>Tracy-CSharp</PackageId>
         <PackageDescription>C# interop bindings for https://github.com/wolfpld/tracy.</PackageDescription>
         <RepositoryUrl>https://github.com/clibequilibrium/Tracy-CSharp</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -23,6 +23,38 @@
             <PackagePath>/</PackagePath>
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+
+    <!-- Dynamic link libraries -->
+    <!-- Winx64 -->
+    <ItemGroup>
+        <Content Include="..\..\..\..\lib\*.dll">
+        <Link>%(Filename)%(Extension)</Link>
+            <PackagePath>runtimes/win-x64/native/%(Filename)%(Extension)</PackagePath>
+            <Pack>true</Pack>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     </ItemGroup>
+
+    <!-- Linux -->
+    <ItemGroup>
+        <Content Include="..\..\..\..\lib\*.so">
+        <Link>%(Filename)%(Extension)</Link>
+            <PackagePath>runtimes/linux-x64/native/%(Filename)%(Extension)</PackagePath>
+            <Pack>true</Pack>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    </ItemGroup>
+
+    <!-- osx -->
+    <ItemGroup>
+        <Content Include="..\..\..\..\lib\*.dylib">
+        <Link>%(Filename)%(Extension)</Link>
+            <PackagePath>runtimes/osx/native/%(Filename)%(Extension)</PackagePath>
+            <Pack>true</Pack>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    </ItemGroup>
+
+  </ItemGroup>
 
 </Project>
