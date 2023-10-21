@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- MSBuild settings -->
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace />
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+    <!-- MSBuild settings -->
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace />
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
 
-   <!-- NuGet settings -->
+    <!-- NuGet settings -->
     <PropertyGroup>
         <IsPackable>true</IsPackable>
         <PackageId>Tracy-CSharp</PackageId>
@@ -17,6 +17,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>_README_PACKAGE.md</PackageReadmeFile>
     </PropertyGroup>
+
     <ItemGroup>
         <None Update="_README_PACKAGE.md">
             <Pack>true</Pack>
@@ -24,37 +25,31 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
 
-    <!-- Dynamic link libraries -->
-    <!-- Winx64 -->
-    <ItemGroup>
+        <!-- Dynamic link libraries -->
+        <!-- Winx64 -->
         <Content Include="..\..\..\..\lib\*.dll">
-        <Link>%(Filename)%(Extension)</Link>
+            <Link>%(Filename)%(Extension)</Link>
             <PackagePath>runtimes/win-x64/native/%(Filename)%(Extension)</PackagePath>
             <Pack>true</Pack>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    </ItemGroup>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
 
-    <!-- Linux -->
-    <ItemGroup>
+
+        <!-- Linux -->
         <Content Include="..\..\..\..\lib\*.so">
-        <Link>%(Filename)%(Extension)</Link>
+            <Link>%(Filename)%(Extension)</Link>
             <PackagePath>runtimes/linux-x64/native/%(Filename)%(Extension)</PackagePath>
             <Pack>true</Pack>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    </ItemGroup>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
 
-    <!-- osx -->
-    <ItemGroup>
+        <!-- osx -->
         <Content Include="..\..\..\..\lib\*.dylib">
-        <Link>%(Filename)%(Extension)</Link>
+            <Link>%(Filename)%(Extension)</Link>
             <PackagePath>runtimes/osx/native/%(Filename)%(Extension)</PackagePath>
             <Pack>true</Pack>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
-
-  </ItemGroup>
 
 </Project>
