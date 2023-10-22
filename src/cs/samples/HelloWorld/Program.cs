@@ -38,6 +38,10 @@ internal sealed class Program
         {
             Delay();
             ColoredEvent();
+
+            Profiler.ProfileFrame("Main"); // Put this after you have completed rendering the frame. 
+                                           // Ideally that would be right after the swap buffers command. 
+                                           // Note that this step is optional, as some applications (for example: a compression utility) do not have the concept of a frame
         }
 
         // Call it at the end of your program to free allocated memory
