@@ -1,4 +1,4 @@
-# Tracy-CSharp
+# Tracy-CSharp-On-Demand
 
 ![](Header.png)
 
@@ -6,7 +6,7 @@ C# bindings for https://github.com/wolfpld/tracy with native dynamic link librar
 
 ## How to use
 
-## Get it from [NuGet](https://www.nuget.org/packages/Tracy-CSharp)
+## Get it from [NuGet](https://www.nuget.org/packages/Tracy-CSharp-On-Demand)
 
 ```bash
 dotnet add package Tracy-CSharp --version 2023.10.21
