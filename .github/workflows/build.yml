@@ -8,6 +8,7 @@ on:
       - v*
     branches:
       - main
+      - on-demand
     paths-ignore:
       - "**.md"
 
