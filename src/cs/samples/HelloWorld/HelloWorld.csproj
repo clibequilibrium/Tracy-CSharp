@@ -8,15 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\production\Tracy\Tracy.csproj" />
-  </ItemGroup>
-
-  <!-- Dynamic link libraries -->
-  <ItemGroup>
-    <Content Include="..\..\..\..\lib\TracyClient.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>TracyClient.dll</TargetPath>
-    </Content>
+    <PackageReference Include="Tracy-CSharp-On-Demand" Version="2023.10.22" />
   </ItemGroup>
 
 </Project>
