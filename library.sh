@@ -8,6 +8,33 @@ fi
 
 c2cs library --config "$DIRECTORY/bindgen/config-build-c-library.json"
 	
+# Directory to search for libraries
+search_dir="./lib"
+
+# Check if the directory exists
+if [ ! -d "$search_dir" ]; then
+    echo "Directory not found: $search_dir"
+    exit 1
+fi
+
+# Find all libraries with prefix "lib"
+lib_files=$(find "$search_dir" -type f -name "lib*")
+
+# Iterate through the list of found libraries and strip the "lib" prefix
+for lib_file in $lib_files; do
+    # Extract the filename without the path
+    file_name=$(basename "$lib_file")
+    
+    # Strip the "lib" prefix
+    new_name="${file_name#lib}"
+
+    # Rename the file with the stripped prefix
+    mv "$lib_file" "$(dirname "$lib_file")/$new_name"
+
+    echo "Stripped and renamed: $file_name -> $new_name"
+done	
+	
+	
 if [[ -z "$1" ]]; then
     read
 fi
