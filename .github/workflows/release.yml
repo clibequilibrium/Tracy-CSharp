@@ -2,10 +2,10 @@ name: "Release"
 on:
   workflow_dispatch:
     inputs:
-      pre-release:
-        description: 'Is this a release candidate (pre-release)? (NOTE: candidates get uploaded to MyGet.org instead of NuGet.org)'     
+      version:
+        description: Version of the package  
         required: true
-        default: 'true'
+        default: '0.0.0'
   schedule:
     - cron: "0 0 1 * *" # First day of every month
 
@@ -28,19 +28,6 @@ jobs:
         with:
           submodules: "recursive"
 
-      - name: "Set version"
-        id: set-version
-        shell: bash
-        run: |
-          IS_PRERELEASE="${{ github.event.inputs.pre-release }}"
-          if [[ "$IS_PRERELEASE" = "true" ]]; then
-            VERSION="$(date +'%Y.%m.%d')-rc"
-          else
-            VERSION="$(date +'%Y.%m.%d')"
-          fi
-          echo "VERSION=$VERSION"
-          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT" 
-
       - name: "Download native libraries (win-x64)"
         uses: actions/download-artifact@v1
         with:
@@ -60,19 +47,18 @@ jobs:
           path: "./lib"
 
       - name: ".NET pack"
-        run: dotnet pack "./src/cs" --nologo --verbosity minimal --configuration Release -p:PackageVersion="${{ steps.set-version.outputs.VERSION }}" -p:RepositoryBranch="${{ github.head_ref || github.ref_name }}" -p:RepositoryCommit="${{ github.sha }}"
+        run: dotnet pack "./src/cs" --nologo --verbosity minimal --configuration Release -p:PackageVersion="${{ github.event.inputs.version }}" -p:RepositoryBranch="${{ github.head_ref || github.ref_name }}" -p:RepositoryCommit="${{ github.sha }}"
 
       - name: "Upload packages to NuGet"
-        if: github.event_name == 'schedule' || github.event.inputs.pre-release == 'false'
+        if: github.event_name == 'schedule'
         env:
           NUGET_ACCESS_TOKEN: ${{ secrets.NUGET_ACCESS_TOKEN }}
         run: dotnet nuget push "./src/cs/production/**/*.nupkg" --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key $NUGET_ACCESS_TOKEN
 
       - name: "Create tag and GitHub release" 
         uses: softprops/action-gh-release@v1
-        if: github.event_name == 'schedule' || github.event.inputs.pre-release == 'false'
+        if: github.event_name == 'schedule'
         with:
           generate_release_notes: true
-          prerelease: "{{ github.event.inputs.pre-release == 'true' }}"
-          tag_name: "v${{ steps.set-version.outputs.VERSION }}"
-          
+          prerelease: false
+          tag_name: "v${{ github.event.inputs.version }}"
