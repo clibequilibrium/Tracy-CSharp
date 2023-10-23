@@ -20,9 +20,9 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - { name: Windows (x64), os: windows-latest, rid: win-x64 }
-          - { name: macOS (x64 + arm64), os: macos-latest, rid: osx }
-          - { name: Linux (x64), os: ubuntu-latest, rid: linux-x64 }
+          - { name: Windows (x64), os: windows-2022, rid: win-x64 }
+          - { name: macOS (x64 + arm64), os: macos-11, rid: osx }
+          - { name: Linux (x64), os: ubuntu-20.04, rid: linux-x64 }
     steps:
 
       - name: "Clone Git repository"
@@ -59,7 +59,7 @@ jobs:
   dotnet-job:
     name: "Build .NET solution"
     needs: [native-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
 
       - name: "Clone Git repository"

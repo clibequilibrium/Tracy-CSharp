@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Tracy-CSharp-On-Demand" Version="2023.10.22" />
+    <PackageReference Include="Tracy-CSharp" Version="2023.10.21" />
   </ItemGroup>
 
 </Project>

@@ -12,8 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - { name: Windows, os: windows-latest, rid: win }
-          - { name: macOS, os: macos-latest, rid: osx }
+          - { name: Windows, os: windows-2022, rid: win }
+          - { name: macOS, os: macos-11, rid: osx }
           - { name: Linux, os: ubuntu-20.04, rid: linux }
 
     steps:
@@ -43,7 +43,7 @@ jobs:
   bindgen-cross-platform-ast-job:
     name: "Bindgen AST cross-platform"
     needs: [bindgen-ast-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: "Clone Git repository"
@@ -86,7 +86,7 @@ jobs:
   bindgen-cs-job:
     name: "Bindgen C#"
     needs: [bindgen-cross-platform-ast-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: "Clone Git repository"
