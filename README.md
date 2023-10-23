@@ -2,7 +2,7 @@
 
 ![](Header.png)
 
-C# bindings for https://github.com/wolfpld/tracy with native dynamic link libraries based on [`imgui-cs`](https://github.com/bottlenoselabs/imgui-cs).
+C# bindings for https://github.com/wolfpld/tracy with native dynamic link libraries based on [`imgui-cs`](https://github.com/bottlenoselabs/imgui-cs) compiled with ``TRACY_ON_DEMAND`` flag.
 
 ## How to use
 
