@@ -2,5 +2,5 @@
   "cMakeDirectoryPath": "../ext/Tracy/",
   "outputDirectoryPath": "../lib",
   "deleteBuildFiles": true,
-  "cMakeArguments": [ "-DBUILD_SHARED_LIBS=ON" ]
+  "cMakeArguments": [ "-DBUILD_SHARED_LIBS=ON", "-DCMAKE_SHARED_LIBRARY_PREFIX=''" ]
 }
