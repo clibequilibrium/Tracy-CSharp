@@ -7,19 +7,15 @@ C# bindings for https://github.com/wolfpld/tracy with native dynamic link librar
 Sample [`C# project`](https://github.com/clibequilibrium/Tracy-CSharp/tree/main/src/cs/samples/HelloWorld)
 
 ```CSharp
-
-        using (Profiler.BeginEvent())
-        {
-            // Code to profile
-        }
-
-
-        Profiler.ProfileFrame("Main"); // Put this after you have completed rendering the frame. 
-                                           // Ideally that would be right after the swap buffers command. 
-                                           // Note that this step is optional, as some applications 
-                                           // (for example: a compression utility) 
-                                           // do not have the concept of a frame
-
+using (Profiler.BeginEvent())
+{
+    // Code to profile
+}
+Profiler.ProfileFrame("Main"); // Put this after you have completed rendering the frame. 
+                                   // Ideally that would be right after the swap buffers command. 
+                                   // Note that this step is optional, as some applications 
+                                   // (for example: a compression utility) 
+                                   // do not have the concept of a frame
 ```
 
 
