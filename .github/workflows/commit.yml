@@ -9,7 +9,7 @@ jobs:
 
   commit-job:
     name: "Commit generated C# code"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.actor == 'dependabot[bot]'
 
     steps:

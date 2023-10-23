@@ -59,7 +59,7 @@ jobs:
   dotnet-job:
     name: "Build .NET solution"
     needs: [native-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
 
       - name: "Clone Git repository"

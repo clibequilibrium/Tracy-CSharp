@@ -43,7 +43,7 @@ jobs:
   bindgen-cross-platform-ast-job:
     name: "Bindgen AST cross-platform"
     needs: [bindgen-ast-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: "Clone Git repository"
@@ -86,7 +86,7 @@ jobs:
   bindgen-cs-job:
     name: "Bindgen C#"
     needs: [bindgen-cross-platform-ast-job]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: "Clone Git repository"
