@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - { name: Windows, os: windows-2019, rid: win }
+          - { name: Windows, os: windows-2022, rid: win }
           - { name: macOS, os: macos-11, rid: osx }
           - { name: Linux, os: ubuntu-20.04, rid: linux }
 
