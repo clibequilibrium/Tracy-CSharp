@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tracy-CSharp" Version="2023.10.21" />
+    <PackageReference Include="Tracy-CSharp" Version="0.11.1" />
   </ItemGroup>
 
 </Project>
