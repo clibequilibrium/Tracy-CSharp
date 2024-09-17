@@ -6,7 +6,6 @@ on:
 permissions: write-all
 
 jobs:
-
   commit-job:
     name: "Commit generated C# code"
     runs-on: ubuntu-20.04
@@ -14,12 +13,12 @@ jobs:
 
     steps:
       - name: "Clone Git repository"
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v2
         with:
-          submodules: 'true'
+          submodules: "true"
 
       - name: "Download changes to commit"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: "bindgen-cs"
           path: "./src/cs/production/Tracy/Generated"
@@ -27,6 +26,6 @@ jobs:
       - name: "Add + commit + push (if necessary)"
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: 'clibequilibrium'
-          author_email: 'clibequilibrium@users.noreply.github.com'
+          author_name: "clibequilibrium"
+          author_email: "clibequilibrium@users.noreply.github.com"
           message: "Update C# bindings"

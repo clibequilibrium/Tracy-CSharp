@@ -51,19 +51,19 @@ jobs:
           submodules: "false"
 
       - name: "Download C code platform abstract syntax trees (win)"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: "ast-win"
           path: "./bindgen/ast"
 
       - name: "Download C code platform abstract syntax trees (osx)"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: "ast-osx"
           path: "./bindgen/ast"
 
       - name: "Download C code platform abstract syntax trees (linux)"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: "ast-linux"
           path: "./bindgen/ast"
@@ -94,7 +94,7 @@ jobs:
           submodules: "false"
 
       - name: "Download C code cross-platform abstract syntax tree"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: "ast-cross-platform"
           path: "./bindgen/x-ast"
