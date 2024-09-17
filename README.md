@@ -9,7 +9,7 @@ C# bindings for https://github.com/wolfpld/tracy with native dynamic link librar
 ## Get it from [NuGet](https://www.nuget.org/packages/Tracy-CSharp)
 
 ```bash
-dotnet add package Tracy-CSharp --version 0.10.0.2
+dotnet add package Tracy-CSharp --version 0.11.1
 ```
 
 ### From source
@@ -21,7 +21,7 @@ dotnet add package Tracy-CSharp --version 0.10.0.2
 ### Latest release of `C2CS`
 
 ```bash
-dotnet tool install bottlenoselabs.c2cs.tool --global 
+dotnet tool install bottlenoselabs.c2cs.tool --global
 ```
 
 1. Download and install [.NET 7](https://dotnet.microsoft.com/download).
@@ -40,4 +40,3 @@ To learn how to use `Tracy`, check out the [official readme](https://github.com/
 `Tracy-CSharp` is licensed under the MIT License (`MIT`) - see the [LICENSE file](LICENSE) for details.
 
 `Tracy` itself is licensed under BSD license (`BSD`) - see https://github.com/wolfpld/tracy/blob/master/LICENSE for more details.
-
