@@ -20,7 +20,7 @@ jobs:
       matrix:
         platform:
           - { name: Windows (x64), os: windows-2022, rid: win-x64 }
-          - { name: macOS (x64 + arm64), os: macos-11, rid: osx }
+          - { name: macOS (x64 + arm64), os: macos-13, rid: osx }
           - { name: Linux (x64), os: ubuntu-20.04, rid: linux-x64 }
     steps:
       - name: "Clone Git repository"
