@@ -57,7 +57,31 @@ public static class Profiler
     }
 
     /// <summary>
-    /// Add a <see cref="double"/> value to a plot.
+    /// Configure how Tracy will display plotted values.
+    /// </summary>
+    /// <param name="name">
+    /// Name of the plot to configure. Each <paramref name="name"/> represents a unique plot.
+    /// </param>
+    /// <param name="type">
+    /// Changes how the values in the plot are presented by the profiler.
+    /// </param>
+    /// <param name="step">
+    /// Determines whether the plot will be displayed as a staircase or will smoothly change between plot points
+    /// </param>
+    /// <param name="fill">
+    /// If <see langword="false"/> the the area below the plot will not be filled with a solid color.
+    /// </param>
+    /// <param name="color">
+    /// An <c>RRGGBB</c> color code that Tracy will use to color the plot in the profiler.
+    /// </param>
+    public static void PlotConfig(string name, PlotType type = PlotType.Number, bool step = false, bool fill = true, uint color = 0)
+    {
+        var (namestr, _) = GetCString(name);
+        TracyEmitPlotConfig(namestr, (int)type, step ? 1 : 0, fill ? 1 : 0, color);
+    }
+
+    /// <summary>
+    /// Add a <see langword="double"/> value to a plot.
     /// </summary>
     public static void Plot(string name, double val)
     {
@@ -66,7 +90,7 @@ public static class Profiler
     }
 
     /// <summary>
-    /// Add a <see cref="int"/> value to a plot.
+    /// Add a <see langword="float"/> value to a plot.
     /// </summary>
     public static void Plot(string name, int val)
     {
@@ -75,7 +99,7 @@ public static class Profiler
     }
 
     /// <summary>
-    /// Add a <see cref="float"/> value to a plot.
+    /// Add a <see langword="float"/> value to a plot.
     /// </summary>
     public static void Plot(string name, float val)
     {
@@ -105,5 +129,23 @@ public static class Profiler
             return (new CString(0), 0);
         }
         return (CString.FromString(fromString), (ulong)fromString.Length);
+    }
+
+    public enum PlotType
+    {
+        /// <summary>
+        /// Values will be displayed as plain numbers.
+        /// </summary>
+        Number = 0,
+
+        /// <summary>
+        /// Treats the values as memory sizes. Will display kilobytes, megabytes, etc.
+        /// </summary>
+        Memory = 1,
+
+        /// <summary>
+        /// Values will be displayed as percentage (with value 100 being equal to 100%).
+        /// </summary>
+        Percentage = 2,
     }
 }
