@@ -36,9 +36,9 @@ public static class Profiler
         [CallerFilePath] string filePath = null,
         [CallerMemberName] string memberName = null)
     {
-        var (filestr, fileln) = GetCString(filePath);
-        var (memberstr, memberln) = GetCString(memberName);
-        var (namestr, nameln) = GetCString(zoneName);
+        using var filestr = GetCString(filePath, out var fileln);
+        using var memberstr = GetCString(memberName, out var memberln);
+        using var namestr = GetCString(zoneName, out var nameln);
         var srcLocId = TracyAllocSrclocName(lineNumber, filestr, fileln, memberstr, memberln, namestr, nameln);
         var context = TracyEmitZoneBeginAlloc(srcLocId, active ? 1 : 0);
 
@@ -49,7 +49,7 @@ public static class Profiler
 
         if (text != null)
         {
-            var (textstr, textln) = GetCString(text);
+            using var textstr = GetCString(text, out var textln);
             TracyEmitZoneText(context, textstr, textln);
         }
 
@@ -76,7 +76,7 @@ public static class Profiler
     /// </param>
     public static void PlotConfig(string name, PlotType type = PlotType.Number, bool step = false, bool fill = true, uint color = 0)
     {
-        var (namestr, _) = GetCString(name);
+        using var namestr = GetCString(name, out var _);
         TracyEmitPlotConfig(namestr, (int)type, step ? 1 : 0, fill ? 1 : 0, color);
     }
 
@@ -85,7 +85,7 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, double val)
     {
-        var (namestr, _) = GetCString(name);
+        using var namestr = GetCString(name, out var _);
         TracyEmitPlot(namestr, val);
     }
 
@@ -94,7 +94,7 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, int val)
     {
-        var (namestr, _) = GetCString(name);
+        using var namestr = GetCString(name, out var _);
         TracyEmitPlotInt(namestr, val);
     }
 
@@ -103,7 +103,7 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, float val)
     {
-        var (namestr, _) = GetCString(name);
+        using var namestr = GetCString(name, out var _);
         TracyEmitPlotFloat(namestr, val);
     }
 
@@ -122,13 +122,15 @@ public static class Profiler
     /// Creates a <seealso cref="CString"/> for use by Tracy. Also returns the
     /// length of the string for interop convenience.
     /// </summary>
-    public static (CString cstring, ulong clength) GetCString(string? fromString)
+    public static CString GetCString(string? fromString, out ulong clength)
     {
         if (fromString == null)
         {
-            return (new CString(0), 0);
+            clength = 0;
+            return new CString(0);
         }
-        return (CString.FromString(fromString), (ulong)fromString.Length);
+        clength = (ulong)fromString.Length;
+        return CString.FromString(fromString);
     }
 
     public enum PlotType
