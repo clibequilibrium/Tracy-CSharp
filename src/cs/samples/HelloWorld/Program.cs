@@ -8,16 +8,19 @@ internal sealed class Program
         int i, end;
         double j = 0;
 
+        Profiler.PlotConfig("Random", step: true);
+
         using (Profiler.BeginZone("My Custom Event Name"))
         {
-
             Random random = new Random();
 
-            for (i = 0, end = (int)random.NextInt64() / 100; i < end; ++i)
+            var randomValue = (int)random.NextInt64() / 100;
+            for (i = 0, end = randomValue; i < end; ++i)
             {
                 j += Math.Sin(i);
             }
 
+            Profiler.Plot("Random", randomValue);
         }
     }
 
@@ -25,7 +28,6 @@ internal sealed class Program
     {
         using (Profiler.BeginZone(color: (uint)ColorType.Aqua))
         {
-
             Thread.Sleep(16);
         }
     }

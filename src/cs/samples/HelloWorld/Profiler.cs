@@ -1,9 +1,15 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using bottlenoselabs.C2CS.Runtime;
 using static Tracy.PInvoke;
 
 public static class Profiler
 {
+    // Plot names need to be cached for the lifetime of the program
+    // seealso Tracy docs section 3.1
+    private static readonly Dictionary<string, CString> PlotNameCache = new Dictionary<string, CString>();
+
     /// <summary>
     /// Begins a new <see cref="ProfilerZone"/> and returns the handle to that zone. Time
     /// spent inside a zone is calculated by Tracy and shown in the profiler. A zone is
@@ -76,7 +82,7 @@ public static class Profiler
     /// </param>
     public static void PlotConfig(string name, PlotType type = PlotType.Number, bool step = false, bool fill = true, uint color = 0)
     {
-        using var namestr = GetCString(name, out var _);
+        var namestr = GetPlotCString(name);
         TracyEmitPlotConfig(namestr, (int)type, step ? 1 : 0, fill ? 1 : 0, color);
     }
 
@@ -85,7 +91,7 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, double val)
     {
-        using var namestr = GetCString(name, out var _);
+        var namestr = GetPlotCString(name);
         TracyEmitPlot(namestr, val);
     }
 
@@ -94,7 +100,7 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, int val)
     {
-        using var namestr = GetCString(name, out var _);
+        var namestr = GetPlotCString(name);
         TracyEmitPlotInt(namestr, val);
     }
 
@@ -103,8 +109,18 @@ public static class Profiler
     /// </summary>
     public static void Plot(string name, float val)
     {
-        using var namestr = GetCString(name, out var _);
+        var namestr = GetPlotCString(name);
         TracyEmitPlotFloat(namestr, val);
+    }
+
+    private static CString GetPlotCString(string name)
+    {
+        if(!PlotNameCache.TryGetValue(name, out var plotCString))
+        {
+            plotCString = CString.FromString(name);
+            PlotNameCache.Add(name, plotCString);
+        }
+        return plotCString;
     }
 
     /// <summary>
@@ -116,6 +132,15 @@ public static class Profiler
     public static void EmitFrameMark()
     {
         TracyEmitFrameMark(null);
+    }
+
+    /// <summary>
+    /// Is the app connected to the external profiler?
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsConnected()
+    {
+        return Convert.ToBoolean(TracyConnected());
     }
 
     /// <summary>
