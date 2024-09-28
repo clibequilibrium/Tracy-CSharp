@@ -2,9 +2,13 @@
 .idea/
 .vscode/
 
+# visual studio
+.vs/
+
 # C# build artifacts
 /bin/
 /obj/
+/artifacts/
 
 # C# packages
 /nupkg/
