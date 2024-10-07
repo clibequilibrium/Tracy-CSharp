@@ -9,7 +9,7 @@ C# bindings for https://github.com/wolfpld/tracy with native dynamic link librar
 ## Get it from [NuGet](https://www.nuget.org/packages/Tracy-CSharp)
 
 ```bash
-dotnet add package Tracy-CSharp --version 0.11.1
+dotnet add package Tracy-CSharp --version 0.11.1-hotfix
 ```
 
 ### From source
