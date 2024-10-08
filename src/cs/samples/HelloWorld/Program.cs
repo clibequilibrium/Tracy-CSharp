@@ -34,6 +34,8 @@ internal sealed class Program
 
     internal static void Main(string[] args)
     {
+        Profiler.AppInfo("Hello AppInfo!");
+
         while (true)
         {
             Delay();

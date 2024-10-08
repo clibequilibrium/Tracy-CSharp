@@ -45,13 +45,8 @@ public static class Profiler
         using var filestr = GetCString(filePath, out var fileln);
         using var memberstr = GetCString(memberName, out var memberln);
         using var namestr = GetCString(zoneName, out var nameln);
-        var srcLocId = TracyAllocSrclocName(lineNumber, filestr, fileln, memberstr, memberln, namestr, nameln);
+        var srcLocId = TracyAllocSrclocName(lineNumber, filestr, fileln, memberstr, memberln, namestr, nameln, color);
         var context = TracyEmitZoneBeginAlloc(srcLocId, active ? 1 : 0);
-
-        if (color != 0)
-        {
-            TracyEmitZoneColor(context, color);
-        }
 
         if (text != null)
         {
@@ -124,6 +119,19 @@ public static class Profiler
     }
 
     /// <summary>
+    /// Emit a string that will be included along with the trace description.
+    /// </summary>
+    /// <remarks>
+    /// Viewable in the Info tab in the profiler.
+    /// </remarks>
+    public static void AppInfo(string appInfo)
+    {
+        using var infostr = GetCString(appInfo, out var infoln);
+        TracyEmitMessageAppinfo(infostr, infoln);
+    }
+
+
+    /// <summary>
     /// Emit the top-level frame marker.
     /// </summary>
     /// <remarks>
@@ -140,7 +148,7 @@ public static class Profiler
     /// <returns></returns>
     public static bool IsConnected()
     {
-        return Convert.ToBoolean(TracyConnected());
+        return TracyConnected() != 0;
     }
 
     /// <summary>
