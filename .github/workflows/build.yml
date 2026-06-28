@@ -20,7 +20,7 @@ jobs:
       matrix:
         platform:
           - { name: Windows (x64), os: windows-2022, rid: win-x64 }
-          - { name: macOS (x64 + arm64), os: macos-15, rid: osx }
+          #- { name: macOS (x64 + arm64), os: macos-15, rid: osx }
           - { name: Linux (x64), os: ubuntu-24.04, rid: linux-x64 }
     steps:
       - name: "Clone Git repository"
@@ -70,11 +70,11 @@ jobs:
           name: "native-libraries-win-x64"
           path: "./lib"
 
-      - name: "Download native libraries (osx)"
-        uses: actions/download-artifact@v4
-        with:
-          name: "native-libraries-osx"
-          path: "./lib"
+      #- name: "Download native libraries (osx)"
+      #  uses: actions/download-artifact@v4
+      #  with:
+      #    name: "native-libraries-osx"
+      #    path: "./lib"
 
       - name: "Download native libraries (linux-x64)"
         uses: actions/download-artifact@v4
