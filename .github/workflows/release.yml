@@ -17,7 +17,7 @@ jobs:
   release-job:
     name: "Release"
     needs: [build-job]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
